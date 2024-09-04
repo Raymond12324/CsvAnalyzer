@@ -6,23 +6,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CsvFileReader = void 0;
 const fs_1 = __importDefault(require("fs"));
 class CsvFileReader {
-    constructor(fileName) {
-        this.fileName = fileName;
-        this._data = [];
+    constructor(filename) {
+        this.filename = filename;
+        this.data = [];
     }
-    Read() {
-        this._data = fs_1.default
-            .readFileSync(`Data/${this.fileName}`, {
-            encoding: "utf-8",
+    read() {
+        this.data = fs_1.default
+            .readFileSync(this.filename, {
+            encoding: 'utf-8'
         })
-            .split("\n")
+            .split('\n')
             .map((row) => {
-            return row.split(",");
-        })
-            .map(this.mapRow);
-    }
-    get data() {
-        return this._data;
+            return row.split(',');
+        });
     }
 }
 exports.CsvFileReader = CsvFileReader;
